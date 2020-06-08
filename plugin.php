@@ -78,7 +78,7 @@ class Yoast_To_REST_API {
 
     
     function wp_api_encode_yoast( $post, $field_name, $request ) {
-		$yoastFields = YoastSEO()->meta->for_term( $post_id ); 
+		$yoastFields = YoastSEO()->meta->for_post( $post_id ); 
         return self::get_yoast_fields($yoastFields);
 	}
 

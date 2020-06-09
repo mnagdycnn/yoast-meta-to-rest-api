@@ -91,7 +91,9 @@ class Yoast_To_REST_API {
 	
 
     function get_yoast_fields($yoastFields){
+		
         $og_image =  array_pop($yoastFields->open_graph_images);  
+		$twitter_image = array_pop($yoastFields->twitter_image); 
 
         $yoast_meta = array(
             'site_title'               =>  get_bloginfo( 'name' ),
@@ -105,7 +107,7 @@ class Yoast_To_REST_API {
             'og_site_name'             =>  $yoastFields->open_graph_site_name, 
             'og_title'                 =>  $yoastFields->open_graph_title,
             'og_description'           =>  $yoastFields->open_graph_description,
-            'og_image'                 =>  $og_image, 
+            'og_image'                 =>  json_encode($og_image), 
             'og_type'                  =>  $yoastFields->open_graph_type,
             'og_locale'                =>  $yoastFields->open_graph_locale,
             'og_url'                   =>  $yoastFields->open_graph_url, 
@@ -118,9 +120,9 @@ class Yoast_To_REST_API {
 
             'twitter_description'       => $yoastFields->twitter_description,
             'twitter_title'             => $yoastFields->twitter_title,
-            'twitter_image'             => $yoastFields->twitter_image,
+            'twitter_image'             => json_encode($twitter_image),
 
-            'json_lds'                  => $yoastFields->schema,  
+            'json_lds'                  => WPSEO_Utils::format_json_encode( $yoastFields->schema),  
             'breadcrumbs'               => $yoastFields->breadcrumbs,
 		);
 
@@ -131,10 +133,9 @@ class Yoast_To_REST_API {
 
 
 function WPAPIYoast_init() {
-	if ( class_exists( 'WPSEO_Frontend' ) ) {
-		include __DIR__ . '/classes/class-wpseo-frontend-to-rest-api.php';
-
-		$yoast_To_REST_API = new Yoast_To_REST_API();
+	
+	if(in_array('wordpress-seo/wp-seo.php', apply_filters('active_plugins', get_option('active_plugins')))){ 
+    $yoast_To_REST_API = new Yoast_To_REST_API();
 	} else {
 		add_action( 'admin_notices', 'wpseo_not_loaded' );
 	}

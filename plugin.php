@@ -92,8 +92,8 @@ class Yoast_To_REST_API {
 
     function get_yoast_fields($yoastFields){
 		
-        $og_image =  array_pop($yoastFields->open_graph_images);  
-		$twitter_image = array_pop($yoastFields->twitter_image); 
+        $og_image =  $yoastFields->open_graph_images;  
+		$twitter_image = $yoastFields->twitter_image; 
 
         $yoast_meta = array(
             'site_title'               =>  get_bloginfo( 'name' ),
@@ -133,8 +133,8 @@ class Yoast_To_REST_API {
 
 
 function WPAPIYoast_init() {
-	
-	if(in_array('wordpress-seo/wp-seo.php', apply_filters('active_plugins', get_option('active_plugins')))){ 
+	$active_plugins = apply_filters('active_plugins', get_option('active_plugins'));
+	if(in_array('wordpress-seo/wp-seo.php', $active_plugins) || in_array('wordpress-seo-premium/wp-seo-premium.php', $active_plugins)){ 
     $yoast_To_REST_API = new Yoast_To_REST_API();
 	} else {
 		add_action( 'admin_notices', 'wpseo_not_loaded' );

@@ -92,8 +92,8 @@ class Yoast_To_REST_API {
 
     function get_yoast_fields($yoastFields){
 		
-        $og_image =  $yoastFields->open_graph_images;  
-		$twitter_image = $yoastFields->twitter_image; 
+        $og_image =  array_pop($yoastFields->open_graph_images);  
+		$twitter_image = array_pop($yoastFields->twitter_image); 
 
         $yoast_meta = array(
             'site_title'               =>  get_bloginfo( 'name' ),

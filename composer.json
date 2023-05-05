@@ -1,0 +1,28 @@
+{
+    "name": "mnagdycnn/yoast-meta-to-rest-api",
+    "description": "A plugin that registers yoast meta fields as APIs",
+    "type": "wordpress-plugin",
+    "license": "GPL-2.0-or-later",
+    "authors": [
+      {
+        "name": "mohamed nagdy"
+      }
+    ],
+    "require": {
+      "php": ">=7.3"
+    },
+    "autoload": {
+      "psr-4": {
+        "YoastMetaToRest\\": "./**"
+      }
+    },
+    "scripts": {
+      "lint": "phpcs .",
+      "lint-fix": "phpcbf ."
+    },
+    "config": {
+      "allow-plugins": {
+        "dealerdirect/phpcodesniffer-composer-installer": true
+      }
+    }
+  }

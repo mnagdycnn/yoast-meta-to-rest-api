@@ -7,7 +7,7 @@ add_action( 'plugins_loaded', 'WPAPIYoast_init' );
  * Description: Updates Yoast fields to page, post, category and any other custom taxonomy metadata to WP REST API responses
  * Author: Mohamed Nagdy inspired by Yasin Yaqoobi
  * Author URI: https://github.com/mnagdycnn/
- * Version: 2.0.0
+ * Version: 2.1.0
  * Plugin URI: https://github.com/mnagdycnn/yoast-meta-to-rest-api/
  */
 class YoastToRestApi {
@@ -185,7 +185,8 @@ class YoastToRestApi {
 		'yoast_wpseo_opengraph-image',
 		'yoast_wpseo_twitter-title',
 		'yoast_wpseo_twitter-description',
-		'yoast_wpseo_twitter-image'
+		'yoast_wpseo_twitter-image',
+		'yoast_wpseo_metakeywords'
 	);
 
 }	
